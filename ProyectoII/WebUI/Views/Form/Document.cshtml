@@ -1,0 +1,59 @@
+﻿@{ Layout = "~/Views/Shared/_LayoutDashBoard.cshtml"; }
+
+@using WebUI.Models.Helpers;
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/UserFormDocument.js"></script>
+
+@{ ViewBag.Title = "Document"; }
+
+
+<style type="text/css">
+    #upload_widget {
+        width: 70%;
+    }
+
+    #upload_widgetUno {
+        width: 70%;
+        margin-left: 8%;
+    }
+
+    #FinishRegistration {
+        background-color: black;
+        color: whitesmoke;
+        width: 40%;
+        margin: auto;
+        font-size: 1.1rem;
+    }
+</style>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<h2>@ViewBag.Message</h2>
+
+<div id="pagina" class="OTP">
+    <h2 style="text-align:center; margin-bottom:2%;margin-top:7%">Please upload the following documents!</h2>
+    <p style="font-size: 1.4rem; color: black; text-align: center;margin-bottom:7%;">Please make sure that the photos look sharp.</p>
+    <div class="d-flex">
+        <form id="frmOTPEmail" style="display:flex;flex-direction:column;justify-content:center;margin:auto;width:70%">
+            <div style="display: flex; flex-wrap: wrap; margin-bottom:8%; margin-left:8%;">
+                <div style="flex:1;">
+                    <p style="font-size: 1.5rem; color: black;padding-left:-2%;">Attach a photo of your identity card.</p>
+                    <button style="font-size:1.1rem;" id="upload_widgetUno" type="button" class="btn btn-primary">Id</button>
+                </div>
+                <div style="flex:1;">
+                    <p style="font-size: 1.5rem; color: black;">Attach an example of your work.</p>
+                    <button style="font-size:1.1rem;" id="upload_widget" type="button" class="btn btn-primary">Work Sample</button>
+                </div>
+            </div>
+            @Html.CtrlButton("UserFormDocument", "FinishRegistration", "Save and Continue", buttonType: "Success", onClickFunction: "sendInformation")
+        </form>
+    </div>
+</div>

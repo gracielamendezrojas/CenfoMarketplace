@@ -1,0 +1,63 @@
+﻿@{ Layout = "~/Views/Shared/_LayoutDashBoard.cshtml"; }
+
+@using WebUI.Models.Helpers;
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/UserForm.js"></script>
+
+@{ ViewBag.Title = "UserForm"; }
+
+
+<style type="text/css">
+    #btnSaveUser {
+        background-color: black;
+        color: white;
+        margin-bottom: 3%;
+        margin-top: 3%;
+        margin-left: 2%;
+    }
+
+    #upload_widget {
+        margin-top: 8%;
+        width: 61%;
+    }
+</style>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<h2>@ViewBag.Message</h2>
+<div id="pagina">
+    <form id="frmCustomer" style="margin:3% 8% 3% 8%;">
+        <h1 style="text-align:center;margin-bottom:3%;">Create your account now and enjoy the CenfoMarket benefits!</h1>
+        <div style="display:flex; flex-wrap:wrap;">
+            <div style="flex:1;padding-left: 5%;">
+                @Html.CtrlInput("txtId", "text", "Identification", columnDataName: "Id")
+                @Html.CtrlInput("txtName", "text", "Name", columnDataName: "Name")
+                @Html.CtrlInput("txtLastName", "text", "Last Name", columnDataName: "LastName")
+                @Html.CtrlInput("txtNickName", "text", "Nick Name", columnDataName: "NickName")
+            </div>
+            <div style="flex:1;padding-left: 5%;">
+                @Html.CtrlInput("txtEmail", "text", "Email", columnDataName: "Email")
+                @Html.CtrlInput("txtPhone", "text", "Phone", columnDataName: "Phone")
+                @Html.CtrlSelect("txtPreferredMethodd", "select", "Where do you prefer to be contacted using the app?", columnDataName: "PreferredMethod", options: "SMS,Email,Both")
+                <button id="upload_widget" type="button" class="btn btn-primary form-control">Upload Profile Image</button>
+            </div>
+            <div style="flex:1; padding-left: 5%; ">
+                @Html.CtrlDatePicker("txtDBO", "date", "DOB", columnDataName: "DOB")
+                @Html.CtrlInput("txtPassword", "password", "Password", columnDataName: "Password")
+                <input type="checkbox" id="checkPass"> <label style="font-size: 0.8rem;">Show password</label>
+                @Html.CtrlSelect("Role", "select", "What type of account would you want to create?", columnDataName: "Role", options: "Content Creator,Buyer")
+                <br />
+                @Html.CtrlButton("UserForm", "btnSaveUser", "Save Information", buttonType: "Success", onClickFunction: "SaveInformation")
+            </div>
+        </div>
+    </form>
+</div>
+
+

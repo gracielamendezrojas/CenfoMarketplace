@@ -1,0 +1,44 @@
+﻿@using WebUI.Models.Helpers;
+
+@{
+    ViewBag.Title = "AuctionCollectionContent";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/DashAssets/css/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+<script src="~/Scripts/View/AuctionCollectionContent.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="padding-Dashboard">
+    <div class="flex-profile margin-top-Dashboard-px ">
+        <div>
+            <h3>Current NFT auction </h3>
+            <p>Name of collection: <span id="name"></span></p>
+            <p>Start date: <span id="startDate"></span></p>
+            <p>End date: <span id="endDate"></span></p>
+            <p>Base price: $<span id="basePrice"></span></p>
+        </div>
+
+        <div>
+            <h3>Update base price</h3>
+            <div class="flex-profile">
+                @Html.CtrlInput("txtBasePrice", "text", "Base price ($)", columnDataName: "Base price ")
+                <div>
+                    <button id="auction-change-price" class="btn btn-primary btn-sm form-control" style="margin-top: 60px">Change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div id="contenedor" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4" style=" display: flex; flex-wrap: wrap;">
+
+
+    </div>
+</div>
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/AuctionCollectionContent.js"></script>

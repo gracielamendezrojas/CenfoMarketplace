@@ -1,0 +1,67 @@
+﻿@using WebUI.Controllers
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - Cenfo Market</title>
+    <link href="~/Content/BootswatchAssets/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/BootswatchAssets/jquery.dataTables.min.css" rel="stylesheet" />
+
+
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        @Html.ActionLink("Cenfomarket", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto ">
+                <li class="nav-item">
+                    <a class="nav-link dashboard-link" href="">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@GlobalURL.frontEnd/Dashboard/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@GlobalURL.frontEnd/Dashboard/TestNFTs">Gallery</a>
+                </li>
+            </ul>
+            <form class="d-flex" style="width:13%">
+                    <div class="wrapper" id="notif-button">
+                        <div class="notification_wrap">
+                            <div class="notification_icon">
+                                <i class="fas fa-bell"> </i>
+                            </div>
+                            <div class="dropdown" id="dropdown" style="width: 17%;">
+                            </div>
+                        </div>
+                    </div>
+                <a class="nav-link" style="color: white" id="logout-button" href="@GlobalURL.frontEnd">Log out</a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<script src="~/Scripts/View/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/View/bootstrap.min.js"></script>
+<script src="~/Scripts/View/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/Notifications.js"></script>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<body>
+
+    @RenderBody()
+
+
+</body>
+
+</html>
+

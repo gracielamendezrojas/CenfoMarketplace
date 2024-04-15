@@ -1,0 +1,76 @@
+﻿@using WebUI.Models.Helpers;
+
+@{
+    ViewBag.Title = "Offers";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        margin-top: 60px;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/View/Offers.js"></script>
+
+<div class="padding-Dashboard">
+
+    <div class="flex-profile margin-top-Dashboard-px d-flex align-items-start">
+        <div>
+            <h3>Bid</h3>
+            <div class="flex-profile">
+                @Html.CtrlInput("txtdirectbit", "text", "Direct Bid ($)", columnDataName: "Base price")
+                <div>
+                    @Html.CtrlButton("Btn1", "place-direct-offer", "Offer", buttonType: "btn btn-primary btn-sm form-control", onClickFunction: "DirectOffer")
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3>Auto Bid</h3>
+            <div class="flex-profile">
+                @Html.CtrlInput("txtincrement", "text", "Increment ($)", columnDataName: "Base price")
+
+                @Html.CtrlInput("txtPrice", "text", "Maximun Price ($)", columnDataName: "Base price")
+                <div>
+                    @Html.CtrlButton("Btn1", "place-auto-offer", "Set", buttonType: "btn btn-primary btn-sm form-control", onClickFunction: "SetBid")
+                    @Html.CtrlButton("Btn1", "cancel-auto-offer", "Cancel", buttonType: "btn btn-primary btn-sm form-control", onClickFunction: "CancelBid")
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="contenedortitle" style="padding-left: 50px; border-top: 1px black solid; padding-top: 50px;"></div>
+<div id="contenedor" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4" style="display: flex; flex-wrap: wrap; padding-left: 50px; wrap; padding-right: 50px; "></div>
+<div class="padding-Dashboard">
+    <h3>Offers </h3>
+    @Html.CtrlTable("Offers", "tblOffers", "", "User,Amount ($),Date", "User,Amount,FormattedDate", "")
+</div>
+
+

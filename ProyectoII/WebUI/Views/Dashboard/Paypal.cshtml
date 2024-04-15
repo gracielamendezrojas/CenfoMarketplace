@@ -1,0 +1,76 @@
+﻿@using WebUI.Models.Helpers;
+
+@{
+    ViewBag.Title = "Paypal";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+
+
+<style type="text/css">
+    #btnOTPSMS {
+        background-color: black;
+        color: whitesmoke;
+        margin-bottom: 3%;
+        margin-top: 3%;
+        margin-left: 2%;
+    }
+
+    #btnNewOTPSMS {
+        background-color: black;
+        color: whitesmoke;
+        margin-bottom: 3%;
+        margin-left: 3%;
+    }
+
+    .center-input {
+        margin: auto;
+        width: 50%;
+    }
+
+
+    .notVisible {
+        display: none;
+    }
+</style>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<h2>@ViewBag.Message</h2>
+
+<div id="pagina" class="OTP">
+    <h2 style="text-align:center; margin-bottom:3%;margin-top:4%">In order to finish the registration, pay the fee</h2>
+
+    <h3 style="text-align:center; margin-bottom:3%;margin-top:4%">Fee: $<span id="paypal-fee"> </span></h3>
+    <div style="text-align:center">
+        @Html.CtrlPaypalBtn("Paypal")
+
+    </div>
+
+    <div id="confirmationPaypal" class="form-group notVisible">
+
+        <form id="paypal" style="text-align:center">
+
+            <p id="paypalCodeInstructions"> After you pay the fee, please enter the code sent to your email. </p>
+
+            <input id="paypalCode" type="text" class="form-control center-input" placeholder="Code">
+            </br>
+            <button id="btnConfirmPaypal" type="button" class="btn btn-primary btn-flat m-b-30 m-t-30">Verify and continue</button>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+
+
+

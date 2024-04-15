@@ -1,0 +1,144 @@
+﻿@using WebUI.Models.Helpers;
+@{
+    ViewBag.Title = "BuyerDashboard";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/DashAssets/css/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+
+<style>
+    .btn-sm {
+        font-size: 13.5px;
+    }
+
+    .card-header {
+        background-color: black;
+    }
+
+    .card-header {
+        padding: 0.2rem 1rem;
+    }
+
+    #tblNFT_length {
+        margin-bottom: 1%;
+    }
+</style>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div class="tab">
+    <button class="tablinks" onclick="displayContent(event, 'BuyerWallet')">Wallet</button>
+    <button class="tablinks" onclick="displayContent(event, 'BuyerCollections')">Purchases</button>
+    <button class="tablinks" onclick="displayContent(event, 'BuyerAuctions')">Auctions</button>
+    <button class="tablinks" onclick="displayContent(event, 'NotificationPreference')">Notification</button>
+</div>
+
+<div class="padding-Dashboard">
+
+    <h2>Welcome!</h2><br>
+
+    <div id="BuyerWallet" class="tabcontent float-wallet">
+        <div>
+            <div id="smart-button-container" class="float-left-50">
+                <h3>Add money to my wallet</h3>
+                <div class=" hidden" style="text-align: center"><label for="description"> </label><input type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+                <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
+                <div class="form-label mt-4"><label for="amount">Amount ($)</label><input class="form-control" name="amountInput" type="number" id="amount" value=""></div>
+                <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
+                <div class="margin-top-paypal" id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input name="invoiceid" maxlength="127" type="text" id="invoiceid" value=""></div>
+                <p class="margin-top-paypal" id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+                <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+            </div>
+            <div class="float-left-50">
+                <h3>My Wallet</h3>
+                <div class="card border-success mb-3 color-backgroun-black width-percentage">
+                    <h4 class="color-White align-center margin-top-Dashboard" id="moneyBuyer">$</h4>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 28%;">
+            <h3 style="padding-left:1%">Transactions</h3>
+            <br />
+            <h4 style="padding-left: 1%; color: green;">Inflows</h4>
+            @Html.CtrlTable("AdminDashboard", "tblTransactionsReceiver", "", "Id,Wallet Sender,Amount ($),Description,Transaction Date", "Id,WalletSender,Amount,Description,FormattedDate", "")
+            <br />
+            <h4 style="padding-left:1%; color:red;">Outflows</h4>
+            @Html.CtrlTable("AdminDashboard", "tblTransactionsSender", "", "Id,Wallet Receiver,Amount ($),Description,Transaction Date", "Id,WalletReceiver,Amount,Description,FormattedDate", "")
+        </div>
+    </div>
+    <div id="BuyerCollections" class="tabcontent">
+        <div style="display:flex; justify-content:space-between">
+            <h3>Available Collections</h3>
+            <div style="display: flex; width: 40%; justify-content: flex-end; margin-bottom: 1%;">
+                <button type="button" class="btn btn-primary btn-sm" id="collection-purchase">Purchase</button>
+            </div>
+        </div>
+        @Html.CtrlTable("BuyerDashboard", "tblCollection", "", "User,Name,Description,Status", "User,Name,Description,SaleStatus", "")
+        <h3>Available NFTs</h3>
+        <div id="nft-container">
+            <div id="contenedor" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-md-4" style=" display: flex; flex-wrap: wrap;">
+
+
+            </div>
+        </div>
+    </div>
+    <div id="BuyerAuctions" class="tabcontent">
+        <div>
+            <div style="display:flex; justify-content:space-between">
+                <h3>Available NFT Auctions</h3>
+                <div style="display: flex; width: 40%; justify-content: flex-end; margin-bottom: 1%;">
+                    <button type="button" class="btn btn-primary btn-sm" id="bid-nft-button">Bid</button>
+                </div>
+            </div>
+            @Html.CtrlTable("BuyerDashboard", "tblAuctionNFT", "", "Name of NFT, Start Date,End Date, Base Price ($)", "NFTName,FormattedCreationDate,FormattedClosingDate,AuctionPrice", "")
+        </div>
+        <div>
+            <div style="display:flex; justify-content:space-between">
+                <h3>Available Collection Auctions</h3>
+                <div style="display: flex; width: 40%; justify-content: flex-end; margin-bottom: 1%;">
+                    <button type="button" class="btn btn-primary btn-sm" id="bid-collection-button">Bid</button>
+                </div>
+            </div>
+            @Html.CtrlTable("BuyerDashboard", "tblAuctionsCollection", "", "Name of Collection, Start Date,End Date, Base Price ($)", "CollectionName,FormattedCreationDate,FormattedClosingDate,AuctionPrice", "")
+
+        </div>
+        <div>
+            <div style="display:flex; justify-content:space-between">
+                <h3>Collections I'm Registered In</h3>
+            </div>
+            @Html.CtrlTable("BuyerDashboard", "tblAuctionsBuyer", "", "Start Date,End Date, Base Price ($)", "FormattedCreationDate,FormattedClosingDate,AuctionPrice", "")
+
+        </div>
+    </div>    
+    <div id="NotificationPreference" class="tabcontent float-notification">
+        <div class="float-left-50">
+            <h3>Current notification method</h3>
+            <div>Notification methods avaliable:</div>
+            <ul>
+                <li>SMS: Only text messages</li>
+                <li>Email: Only email messages</li>
+                <li>Both: Email and text messages</li>
+            </ul>
+            <p>Your notification method: <span id="current-notificationMethod"></span></p>
+        </div>
+        <div class="float-left-50">
+            <h3>Change my notification method</h3>
+            @Html.CtrlSelect("txtPreferredMethodd", "select", "Where do you prefer to be contacted using the app?", columnDataName: "PreferredMethod", options: "SMS,Email,Both")
+            <button id="notification-change-button" class="btn btn-primary btn-sm form-control" style="margin-top: 25px; width: fit-content">Change</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="~/Scripts/View/BuyerDashboard.js"></script>
+

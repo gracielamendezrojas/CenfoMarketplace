@@ -1,0 +1,30 @@
+﻿<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+<script src="../../Scripts/View/ControlActions.js"></script>
+<script src="../../Scripts/View/Paypal.js"></script>
+<div id="paypal-button-container"></div>
+<script>
+    paypal.Buttons({
+
+        // Set up the transaction
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '-#Amount-'
+                    }
+                }]
+            });
+        },
+
+        // Finalize the transaction
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (orderData) {
+                console.log(orderData); 
+                loadPaypalButton(orderData.id, orderData.purchase_units[0].amount.value);
+
+            });
+        }
+
+
+    }).render('#paypal-button-container');
+</script>

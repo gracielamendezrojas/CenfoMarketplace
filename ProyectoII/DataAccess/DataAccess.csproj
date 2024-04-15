@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D5C3B3B-663A-4E60-AC42-E4B2D20C49CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.27.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\SendGrid.9.27.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Twilio, Version=5.74.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.74.0\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Crud\AuctionCrudFactory.cs" />
+    <Compile Include="Crud\AutoBidCrudFactory.cs" />
+    <Compile Include="Crud\CategoryXUserCrudFactory.cs" />
+    <Compile Include="Crud\FeeCrudFactory.cs" />
+    <Compile Include="Crud\NFTXAcquisitionCrudFactory.cs" />
+    <Compile Include="Crud\OrganizationCrudFactory.cs" />
+    <Compile Include="Crud\OrganizationXUserCrudFactory.cs" />
+    <Compile Include="Crud\OTPCrudFactory.cs" />
+    <Compile Include="Crud\PasswordCrudFactory.cs" />
+    <Compile Include="Crud\PhoneCrudFactory.cs" />
+    <Compile Include="Crud\RoleCrudFactory.cs" />
+    <Compile Include="Crud\RoleXUserCrudFactory.cs" />
+    <Compile Include="Crud\TransactionWalletCrudFactory.cs" />
+    <Compile Include="Crud\TransactionXInvoiceCrudFactory.cs" />
+    <Compile Include="Crud\UserActionCrudFactory.cs" />
+    <Compile Include="Crud\UserCrudFactory.cs" />
+    <Compile Include="Crud\NotificationCrudFactory.cs" />
+    <Compile Include="Crud\SuscriptionCrudFactory.cs" />
+    <Compile Include="Crud\DocumentCrudFactory.cs" />
+    <Compile Include="Crud\PayPalCrudFactory.cs" />
+    <Compile Include="Crud\BidCrudFactory.cs" />
+    <Compile Include="Crud\AcquisitionCrudFactory.cs" />
+    <Compile Include="Crud\CollectionCrudFactory.cs" />
+    <Compile Include="Crud\CategoryCrudFactory.cs" />
+    <Compile Include="Crud\NFTCrudFactory.cs" />
+    <Compile Include="Crud\TransactionCrudFactory.cs" />
+    <Compile Include="Crud\InvoiceCrudFactory.cs" />
+    <Compile Include="Crud\CrudFactory.cs" />
+    <Compile Include="Crud\WalletCrudFactory.cs" />
+    <Compile Include="Dao\SqlDao.cs" />
+    <Compile Include="Dao\SqlOperation.cs" />
+    <Compile Include="Mapper\AuctionMapper.cs" />
+    <Compile Include="Mapper\AcquisitionMapper.cs" />
+    <Compile Include="Mapper\AutoBidMapper.cs" />
+    <Compile Include="Mapper\NFTXAcquisitionMapper.cs" />
+    <Compile Include="Mapper\BidMapper.cs" />
+    <Compile Include="Mapper\CategoryMapper.cs" />
+    <Compile Include="Mapper\CategoryXUserMapper.cs" />
+    <Compile Include="Mapper\CollectionMapper.cs" />
+    <Compile Include="Mapper\DocumentMapper.cs" />
+    <Compile Include="Mapper\FeeMapper.cs" />
+    <Compile Include="Mapper\InvoiceMapper.cs" />
+    <Compile Include="Mapper\NFTMapper.cs" />
+    <Compile Include="Mapper\NotificationsMapper.cs" />
+    <Compile Include="Mapper\OrganizationMapper.cs" />
+    <Compile Include="Mapper\OTPMapper.cs" />
+    <Compile Include="Mapper\PasswordMapper.cs" />
+    <Compile Include="Mapper\PayPalMapper.cs" />
+    <Compile Include="Mapper\PhoneMapper.cs" />
+    <Compile Include="Mapper\EntityMapper.cs" />
+    <Compile Include="Mapper\IObjectMapper.cs" />
+    <Compile Include="Mapper\ISqlStaments.cs" />
+    <Compile Include="Mapper\RoleMapper.cs" />
+    <Compile Include="Mapper\RoleXUserMapper.cs" />
+    <Compile Include="Mapper\SuscriptionMapper.cs" />
+    <Compile Include="Mapper\TransactionMapper.cs" />
+    <Compile Include="Mapper\TransactionWalletMapper.cs" />
+    <Compile Include="Mapper\UserActionMapper.cs" />
+    <Compile Include="Mapper\UserMapper.cs" />
+    <Compile Include="Mapper\WalletMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="procedures.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTO-POJOS\DTO-POJOS.csproj">
+      <Project>{61a6315c-b3fe-4eb8-8255-7ee0a315d3f2}</Project>
+      <Name>DTO-POJOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Crud\app.config" />
+    <None Include="Crud\packages.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

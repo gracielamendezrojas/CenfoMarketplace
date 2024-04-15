@@ -1,0 +1,62 @@
+﻿@{ Layout = "~/Views/Shared/_LayoutDashBoard.cshtml"; }
+
+@using WebUI.Models.Helpers;
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/UserFormSMS.js"></script>
+
+@{ ViewBag.Title = "OTPSMS"; }
+
+<style type="text/css">
+    #btnOTPEmail {
+        background-color: black;
+        color: whitesmoke;
+        margin-bottom: 4%;
+        margin-top: 3%;
+    }
+
+    #btnNewOTPEmail {
+        background-color: black;
+        color: whitesmoke;
+    }
+
+    .notVisible {
+        display: none;
+    }
+
+    .fullWidth .col-sm-10 {
+        width: 100%;
+    }
+
+        .fullWidth .col-sm-10 input {
+            padding-right: 0;
+        }
+</style>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<h2>@ViewBag.Message</h2>
+
+<div id="pagina" class="OTP">
+    <h2 style="text-align:center; margin-bottom:4%;margin-top:8%">An OTP has been sent by SMS, please write it in the field!</h2>
+    <div class="d-flex">
+        <form id="frmOTPSMS" style="display:flex;flex-direction:column;justify-content:center;margin:auto;">
+            <div class="fullWidth" style="margin-bottom: 3%;">
+                @Html.CtrlInput("OTPSMS", "text", "OTP", columnDataName: "OTPSMS")
+            </div>
+            <div style="margin-bottom:4%;">
+                <span style="margin-bottom:4%; color:black;">The OTP is going to expire in: </span><span id="Count" sstyle="color:black;"></span>
+            </div>
+            </br>
+            @Html.CtrlButton("UserFormSMS", "btnOTPSMS", "Verify and Continue", onClickFunction: "VerifyOTP")
+            </br>
+            @Html.CtrlButton("UserFormSMS", "btnNewOTPSMS", "Send new OTP", onClickFunction: "SendSMSOTP")
+        </form>
+    </div>
+</div>
+

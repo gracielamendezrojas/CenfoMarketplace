@@ -1,0 +1,48 @@
+﻿@using WebUI.Models.Helpers;
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style type="text/css">
+    .btn {
+        background-color: black;
+        color: white;
+        margin-top: 3%;
+    }
+</style>
+
+<div class="d-flex justify-content-center bd-highlight mb-3">
+    
+
+    <div class="col-lg-offset-6 p-4 ">
+        <div class="login-content>
+            <div class="login-form">
+                <h4>Log in</h4>
+                <form>
+                    <div class="form-group">
+                        @Html.CtrlInput("input-email", "text", "Email", "", columnDataName: "Id")
+                        @Html.CtrlInput("input-password", "password", "Password", "", columnDataName: "Id")
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember Me</label>
+                        <label class="pull-right mt-10">
+                            @Html.ActionLink("Forgotten Password?", "ResetPassword", "Dashboard")
+                        </label>
+                    </div>
+
+                    @Html.CtrlButton("btn-sign-in", "btn-sign-in", "Sign in", buttonType: "Success", onClickFunction: "myFunction")
+
+                    <p class="mt-5">Don't have account ? @Html.ActionLink("Sign Up Here", "UserForm", "Form")</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/View/ControlActions.js"></script>
+<script src="~/Scripts/View/LogIn.js"></script>
+
